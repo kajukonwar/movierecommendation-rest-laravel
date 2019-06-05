@@ -14,9 +14,10 @@ class UsersTableSeeder extends Seeder
     {
 
         DB::table('users')->insert([
-            'name' => Str::random(10),
+            
             'email' => 'example@example.com',
             'password' => bcrypt('secret'),
+            'created_at' => \Carbon\Carbon::now(),
         ]);
     }
 }
