@@ -44,15 +44,11 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
+
         $validator = Validator::make($request->all(), [
 
-            'dob' => 'required',
-            'gender' => 'required',
-            'genre' => 'required',
-            'city' => 'required',
+            'dob' => 'required|date_format:Y-m-d',
             'country' => 'required',
-            'state' => 'required',
-            'fav_movies' => 'required'
         ]);
 
          if ($validator->fails()) {
@@ -63,23 +59,26 @@ class ProfileController extends Controller
         }
 
         $user_id = Auth::id();
-        
         $profile = new Profile();
 
 
         //store profile details
-        $profile->user_id = $request->user_id;
+        $profile->user_id = $user_id;
         $profile->dob = $request->dob;
-        $profile->gender = $request->gender;
         $profile->country = $request->country;
-        $profile->city = $request->city;
-        $profile->state = $request->state;
-        $profile->avatar = $request->avatar;
-        $profile->save();
+        
+        if ($profile->save()) {
 
-        //store user genre
-        $user_genre = new Genre();
-        $user_genre->genre_id = $request->genre;
+            $response = ['status' => 'success'];
+
+        } else {
+
+            $response = ['status' => 'fail'];
+
+        }
+
+        return response()->json($response, 200);
+
     }
 
     /**

@@ -18,10 +18,12 @@ use Illuminate\Http\Request;
 Route::prefix('v1')->group(function() {
 
     Route::post('register', 'AuthController@register');
-    Route::post('login', 'AuthController@login');
-   
+    Route::post('login', 'AuthController@login')->name('login');
+    
+
     Route::middleware('auth:api')->group(function () {
 
         Route::resource('profile', 'ProfileController');
     });
+    
 });
