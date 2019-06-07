@@ -89,7 +89,22 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+
+            $profile = Profile::findOrFail($id);
+
+            $response = ['status' => 'success', 'data' => ['profile' => $profile]];
+
+            return response()->json($response, 200);
+
+        } catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+
+
+            $response = ['status' => 'error', 'message' => 'No profile found'];
+
+            return response()->json($response, 200);
+        }
+        
     }
 
     /**
@@ -147,6 +162,9 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        Profile::destroy($id);
+        $response = ['status' => 'success', 'data' => NULL];
+        return response()->json($response, 200);
     }
 }
