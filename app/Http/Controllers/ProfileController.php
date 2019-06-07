@@ -112,7 +112,31 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $validator = Validator::make($request->all(), [
+
+            'dob' => 'required|date_format:Y-m-d',
+            'country' => 'required',
+        ]);
+
+
+        if ($validator->fails()) {
+
+            $response = ['status' => 'fail', 'data' => ['message' => 'validation error', 'errors' => $validator->errors()]];
+
+            return response()->json($response, 422);
+        }
+
+        
+        $user_id = Auth::id();
+        $profile = Profile::find($id);
+
+        $profile->fill($request->toArray());
+
+        $profile->save();
+        
+        return response()->json($profile, 200);
+        
     }
 
     /**
