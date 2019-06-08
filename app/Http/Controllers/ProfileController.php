@@ -19,6 +19,7 @@ class ProfileController extends Controller
     public function index()
     {
         //
+       
     }
 
     /**
@@ -44,15 +45,16 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
+         
+
+        $user_id = Auth::id();
+
+        return response()->json(['status'=>$user], 200);
+
         $validator = Validator::make($request->all(), [
 
             'dob' => 'required',
-            'gender' => 'required',
-            'genre' => 'required',
-            'city' => 'required',
             'country' => 'required',
-            'state' => 'required',
-            'fav_movies' => 'required'
         ]);
 
          if ($validator->fails()) {

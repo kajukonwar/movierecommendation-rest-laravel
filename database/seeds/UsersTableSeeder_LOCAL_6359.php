@@ -14,10 +14,9 @@ class UsersTableSeeder extends Seeder
     {
 
         DB::table('users')->insert([
-            
             'email' => 'example@example.com',
             'password' => bcrypt('secret'),
-            'created_at' => \Carbon\Carbon::now(),
+            "created_at" =>  \Carbon\Carbon::now(), # new \Datetime()
         ]);
     }
 }
