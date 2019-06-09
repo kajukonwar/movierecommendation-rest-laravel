@@ -19,7 +19,6 @@ class ProfileController extends Controller
     public function index()
     {
         //
-       
     }
 
     /**
@@ -45,15 +44,10 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-         
-
-        $user_id = Auth::id();
-
-        return response()->json(['status'=>$user], 200);
 
         $validator = Validator::make($request->all(), [
 
-            'dob' => 'required',
+            'dob' => 'required|date_format:Y-m-d',
             'country' => 'required',
         ]);
 
@@ -65,23 +59,26 @@ class ProfileController extends Controller
         }
 
         $user_id = Auth::id();
-        
         $profile = new Profile();
 
 
         //store profile details
-        $profile->user_id = $request->user_id;
+        $profile->user_id = $user_id;
         $profile->dob = $request->dob;
-        $profile->gender = $request->gender;
         $profile->country = $request->country;
-        $profile->city = $request->city;
-        $profile->state = $request->state;
-        $profile->avatar = $request->avatar;
-        $profile->save();
+        
+        if ($profile->save()) {
 
-        //store user genre
-        $user_genre = new Genre();
-        $user_genre->genre_id = $request->genre;
+            $response = ['status' => 'success'];
+
+        } else {
+
+            $response = ['status' => 'fail'];
+
+        }
+
+        return response()->json($response, 200);
+
     }
 
     /**
@@ -115,7 +112,31 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $validator = Validator::make($request->all(), [
+
+            'dob' => 'required|date_format:Y-m-d',
+            'country' => 'required',
+        ]);
+
+
+        if ($validator->fails()) {
+
+            $response = ['status' => 'fail', 'data' => ['message' => 'validation error', 'errors' => $validator->errors()]];
+
+            return response()->json($response, 422);
+        }
+
+        
+        $user_id = Auth::id();
+        $profile = Profile::find($id);
+
+        $profile->fill($request->toArray());
+
+        $profile->save();
+        
+        return response()->json($profile, 200);
+        
     }
 
     /**

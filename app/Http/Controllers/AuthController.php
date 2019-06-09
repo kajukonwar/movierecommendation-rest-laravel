@@ -37,6 +37,8 @@ class AuthController extends Controller
 
     }
 
+
+
     public function login(Request $request)
     {
 
@@ -60,7 +62,7 @@ class AuthController extends Controller
 
             $user = Auth::user(); 
 
-            $response['token'] =  $user->createToken('MyApp')-> accessToken; 
+            $response['token'] =  $user->createToken('MyApp')->accessToken; 
 
             $response = ['status' => 'success', 'data' => $response];
 
