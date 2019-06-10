@@ -42,6 +42,21 @@ class AuthController extends Controller
     public function login(Request $request)
     {
 
+
+        $validator = Validator::make($request->all(), [
+
+            'email' => 'required',
+            'password' => 'required',
+
+        ]);
+
+
+        if ($validator->fails()) {
+
+            $response = ['status' => 'fail', 'data' => ['message' => 'validation error', 'errors' => $validator->errors()]];
+
+            return response()->json($response, 422);
+        }
         
         if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')])) { 
 
