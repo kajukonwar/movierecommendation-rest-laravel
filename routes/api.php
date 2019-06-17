@@ -21,6 +21,8 @@ Route::prefix('v1')->group(function() {
     Route::post('login', 'AuthController@login')->name('login');
     
 
+    Route::resource('genres', 'GenreController');
+    
     Route::middleware('auth:api')->group(function () {
 
         Route::resource('profile', 'ProfileController');

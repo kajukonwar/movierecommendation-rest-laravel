@@ -8,5 +8,5 @@ class Genre extends Model
 {
     //
 
-    protected $table = 'user_genres';
+    protected $table = 'genres';
 }
