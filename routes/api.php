@@ -22,6 +22,8 @@ Route::prefix('v1')->group(function() {
     
 
     Route::resource('genres', 'GenreController');
+
+    Route::resource('movies', 'MovieController');
     
     Route::middleware('auth:api')->group(function () {
 
