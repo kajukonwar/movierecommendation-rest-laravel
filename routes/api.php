@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,7 +22,7 @@ Route::prefix('v1')->group(function() {
 
     Route::resource('genres', 'GenreController');
 
-    Route::resource('movies', 'MovieController');
+    Route::apiResource('movies', 'API\MovieController')->only(['index', 'show']);
     
     Route::middleware('auth:api')->group(function () {
 

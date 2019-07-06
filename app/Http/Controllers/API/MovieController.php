@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 use App\Movie;
 use App\Http\Resources\MovieCollection as MovieCollection;
+use App\Http\Resources\Movie as MovieResource;
 
 class MovieController extends Controller
 {
@@ -15,13 +18,11 @@ class MovieController extends Controller
      */
     public function index()
     {
+        //
         $movies = Movie::all();
 
         return new MovieCollection($movies);
-
     }
-
-
 
     /**
      * Store a newly created resource in storage.
@@ -42,9 +43,11 @@ class MovieController extends Controller
      */
     public function show($id)
     {
-        //
-    }
 
+        $movie = Movie::find($id);
+        
+        return new MovieResource($movie);
+    }
 
     /**
      * Update the specified resource in storage.
