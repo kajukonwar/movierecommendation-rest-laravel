@@ -23,6 +23,8 @@ Route::prefix('v1')->group(function() {
     Route::resource('genres', 'GenreController');
 
     Route::apiResource('movies', 'API\MovieController')->only(['index', 'show']);
+
+    Route::apiResource('countries', 'API\CountryController')->only('index', 'show');
     
     Route::middleware('auth:api')->group(function () {
 
