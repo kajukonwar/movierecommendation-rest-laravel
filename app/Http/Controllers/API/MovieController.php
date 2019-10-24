@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Movie;
 use App\Http\Resources\MovieCollection as MovieCollection;
 use App\Http\Resources\Movie as MovieResource;
+use Illuminate\Support\Facades\DB;
 
 class MovieController extends Controller
 {
@@ -70,5 +71,25 @@ class MovieController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getMostRated(Request $request)
+    {
+
+
+        $top_rated_movies = DB::table('user_ratings')
+                           ->select('movie_id', DB::raw('COUNT(rating) as rating_count'))
+                           ->groupBy('movie_id')
+                           ->orderBy('rating_count', 'desc')
+                           ->limit(10);
+
+        return response()->json($top_rated_movies);
+
+        $movies = DB::table('movies')
+                ->joinSub($latestPosts, 'top_rated_movies', function ($join) {
+                    $join->on('movies.movielens_id', '=', 'top_rated_movies.movie_id');
+                })->get();
+
+        return response()->json($movies);
     }
 }

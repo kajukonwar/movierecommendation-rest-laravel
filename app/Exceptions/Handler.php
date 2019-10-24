@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use GrahamCampbell\Exceptions\ExceptionHandler as ExceptionHandler;
+//use App\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
