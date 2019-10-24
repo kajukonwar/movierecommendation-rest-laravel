@@ -3,7 +3,10 @@
 namespace App\Exceptions;
 
 use Exception;
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use GrahamCampbell\Exceptions\ExceptionHandler as ExceptionHandler;
+//use App\Exceptions\Handler as ExceptionHandler;
+use Bugsnag\BugsnagLaravel\Facades\Bugsnag;
 
 class Handler extends ExceptionHandler
 {
@@ -34,6 +37,7 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        Bugsnag::notifyException($exception);
         parent::report($exception);
     }
 
@@ -46,13 +50,6 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {   
-
-        if ($exception instanceof ModelNotFoundException) {
-
-
-            return response()->json(['status' => 'failed', 'data' => null, 'message' => 'Data not found'], 404);
-
-        }
 
 
         return parent::render($request, $exception);
