@@ -83,10 +83,9 @@ class MovieController extends Controller
                            ->orderBy('rating_count', 'desc')
                            ->limit(10);
 
-        return response()->json($top_rated_movies);
-
+      
         $movies = DB::table('movies')
-                ->joinSub($latestPosts, 'top_rated_movies', function ($join) {
+                ->joinSub($top_rated_movies, 'top_rated_movies', function ($join) {
                     $join->on('movies.movielens_id', '=', 'top_rated_movies.movie_id');
                 })->get();
 

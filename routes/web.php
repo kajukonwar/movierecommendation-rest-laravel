@@ -15,7 +15,15 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use Carbon\Carbon;
 
+
+use Bugsnag\BugsnagLaravel\Facades\Bugsnag;
+use RuntimeException;
+
 Route::get('/', function () {
+
+
+    Bugsnag::notifyException(new RuntimeException("Test error"));
+    
     return view('welcome');
 
     /*
