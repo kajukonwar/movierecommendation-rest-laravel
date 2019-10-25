@@ -73,6 +73,9 @@ class MovieController extends Controller
         //
     }
 
+
+
+
     public function getMostRated(Request $request)
     {
 
