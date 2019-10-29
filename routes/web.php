@@ -19,7 +19,193 @@ use Carbon\Carbon;
 Route::get('/', function () {
 
     
-    return view('welcome');
+    //return view('welcome');
+    
+    /*
+    $movies = DB::table('movies')->select('id', 'movielens_id', 'g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'g7', 'g8', 'g9', 'g10', 'g11', 'g12', 'g13', 'g14', 'g15', 'g16', 'g17', 'g18', 'g19')->get();
+
+    foreach ($movies as $movie) {
+
+        if ($movie->g1 == 1) {
+
+            $genre_id = 1;
+
+            DB::table('movie_genres')->insert(
+                 ['movie_id' => $movie->id, 'movielens_id' => $movie->movielens_id, 'genre_id' => $genre_id]
+            );
+
+        } 
+
+        if ($movie->g2 == 1) {
+
+             $genre_id = 2;
+             DB::table('movie_genres')->insert(
+                 ['movie_id' => $movie->id, 'movielens_id' => $movie->movielens_id, 'genre_id' => $genre_id]
+            );
+
+        } 
+
+        if ($movie->g3 == 1) {
+
+             $genre_id = 3;
+             DB::table('movie_genres')->insert(
+                 ['movie_id' => $movie->id, 'movielens_id' => $movie->movielens_id, 'genre_id' => $genre_id]
+            );
+
+        } 
+
+        if ($movie->g4 == 1) {
+
+             $genre_id = 4;
+             DB::table('movie_genres')->insert(
+                 ['movie_id' => $movie->id, 'movielens_id' => $movie->movielens_id, 'genre_id' => $genre_id]
+            );
+
+        } 
+
+        if ($movie->g5 == 1) {
+
+             $genre_id = 5;
+             DB::table('movie_genres')->insert(
+                 ['movie_id' => $movie->id, 'movielens_id' => $movie->movielens_id, 'genre_id' => $genre_id]
+            );
+
+        } 
+
+        if ($movie->g6 == 1) {
+
+             $genre_id = 6;
+             DB::table('movie_genres')->insert(
+                 ['movie_id' => $movie->id, 'movielens_id' => $movie->movielens_id, 'genre_id' => $genre_id]
+            );
+
+        } 
+
+        if ($movie->g7 == 1) {
+
+             $genre_id = 7;
+             DB::table('movie_genres')->insert(
+                 ['movie_id' => $movie->id, 'movielens_id' => $movie->movielens_id, 'genre_id' => $genre_id]
+            );
+
+        } 
+
+
+        if ($movie->g8 == 1) {
+
+             $genre_id = 8;
+             DB::table('movie_genres')->insert(
+                 ['movie_id' => $movie->id, 'movielens_id' => $movie->movielens_id, 'genre_id' => $genre_id]
+            );
+
+        } 
+
+
+        if ($movie->g9 == 1) {
+
+             $genre_id = 9;
+             DB::table('movie_genres')->insert(
+                 ['movie_id' => $movie->id, 'movielens_id' => $movie->movielens_id, 'genre_id' => $genre_id]
+            );
+
+        } 
+
+
+        if ($movie->g10 == 1) {
+
+             $genre_id = 10;
+             DB::table('movie_genres')->insert(
+                 ['movie_id' => $movie->id, 'movielens_id' => $movie->movielens_id, 'genre_id' => $genre_id]
+            );
+
+        } 
+
+        if ($movie->g11 == 1) {
+
+             $genre_id = 11;
+             DB::table('movie_genres')->insert(
+                 ['movie_id' => $movie->id, 'movielens_id' => $movie->movielens_id, 'genre_id' => $genre_id]
+            );
+
+        } 
+
+        if ($movie->g12 == 1) {
+
+             $genre_id = 12;
+             DB::table('movie_genres')->insert(
+                 ['movie_id' => $movie->id, 'movielens_id' => $movie->movielens_id, 'genre_id' => $genre_id]
+            );
+
+        } 
+
+        if ($movie->g13 == 1) {
+
+             $genre_id = 13;
+             DB::table('movie_genres')->insert(
+                 ['movie_id' => $movie->id, 'movielens_id' => $movie->movielens_id, 'genre_id' => $genre_id]
+            );
+
+        } 
+
+
+        if ($movie->g14 == 1) {
+
+             $genre_id = 14;
+             DB::table('movie_genres')->insert(
+                 ['movie_id' => $movie->id, 'movielens_id' => $movie->movielens_id, 'genre_id' => $genre_id]
+            );
+
+        } 
+
+        if ($movie->g15 == 1) {
+
+             $genre_id = 15;
+             DB::table('movie_genres')->insert(
+                 ['movie_id' => $movie->id, 'movielens_id' => $movie->movielens_id, 'genre_id' => $genre_id]
+            );
+
+        } 
+
+        if ($movie->g16 == 1) {
+
+             $genre_id = 16;
+             DB::table('movie_genres')->insert(
+                 ['movie_id' => $movie->id, 'movielens_id' => $movie->movielens_id, 'genre_id' => $genre_id]
+            );
+
+        } 
+
+        if ($movie->g17 == 1) {
+
+             $genre_id = 17;
+             DB::table('movie_genres')->insert(
+                 ['movie_id' => $movie->id, 'movielens_id' => $movie->movielens_id, 'genre_id' => $genre_id]
+            );
+
+        } 
+
+        if ($movie->g18 == 1) {
+
+             $genre_id = 18;
+             DB::table('movie_genres')->insert(
+                 ['movie_id' => $movie->id, 'movielens_id' => $movie->movielens_id, 'genre_id' => $genre_id]
+            );
+
+        } 
+
+        if ($movie->g19 == 1) {
+
+             $genre_id = 19;
+             DB::table('movie_genres')->insert(
+                 ['movie_id' => $movie->id, 'movielens_id' => $movie->movielens_id, 'genre_id' => $genre_id]
+            );
+
+
+        } 
+
+    }
+
+    */
 
     /*
 	//add movie data from omdb

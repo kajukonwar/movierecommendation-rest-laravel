@@ -22,7 +22,9 @@ Route::prefix('v1')->group(function() {
 
     Route::resource('genres', 'GenreController');
 
-    Route::get('movies/top_rated', 'API\MovieController@getMostRated');
+    Route::get('movies/top_rated', 'API\MovieController@getTopRated');
+
+    Route::get('movies/most_rated', 'API\MovieController@getMostRated');
 
     Route::apiResource('movies', 'API\MovieController')->only(['index', 'show']);
 
